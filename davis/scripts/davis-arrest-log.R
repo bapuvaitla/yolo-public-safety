@@ -1,93 +1,117 @@
-  library(tabulizer)
-  library(rJava)
   library(tidyverse)
-  library(googlesheets4)
   library(data.table)
-  library(lubridate)
+  library(rJava) # for scraping PDF tables
+  library(tabulizer) # for scraping PDF tables
+  library(googlesheets4) # for importing excel sheets
+  library(lubridate) # for formatting dates correctly
 
-  
   # Change working directory to your local R project folder
   setwd(
     "/Users/bapu/Projects/watershed/action/public-safety/yolo/analysis/davis/")
   
-  # SCRAPE/DOWNLOAD DATA TABLES----
-    # Arrest log 6/15 to 6/20, from Davis PD via a Public Records Request
-  davis_log_raw <- extract_tables(
+  # DOWNLOAD & SCRAPE DATA TABLES----
+    # Scrape arrest log from June 2015 to June 2020, from Davis PD 
+  arrest_log_raw <- extract_tables(
     file = "./data/raw/davis-arrest-log-raw.pdf",
     method = "decide",
     output = "data.frame", 
     header = F)
-    # California law enforcement code tables, from CA Attorney General
+    # If possible, add here place of residence of arrestees.
+  
+  
+    # Download California law enforcement code tables, from CA Attorney General
   le_code_raw <- read.csv(url(
     "https://oag.ca.gov/sites/all/files/agweb/law-enforcement/code-tables/macrcode.csv?070920201056"),
     header = FALSE)
-    # Crime sentencing (felony/misdemeanor) severity 
-    # File is manually constructed from sentence field in le_code_raw
-    # You will be asked to confirm email for Google sheets access
+  
+    # Construct crime sentencing (felony/misdemeanor) severity dataset
+      # Severity is inferred from the sentence field in le_code_raw. charges
+      # with less than an year sentence are assumed to be misdemeanors.
+      # You will be asked to confirm email for Google sheets access. 
   severity <- read_sheet(
     "https://docs.google.com/spreadsheets/d/1arqMRPvlznsOTjmrRYr2EEucXNydZrLpqz7L4eD5iyY/edit?usp=sharing")
-    # Arrest categories for charges included in Davis arrest log only 
-    # Manually constructed from https://oag.ca.gov/sites/all/files/agweb/pdfs/cjsc/prof10/codes.pdf
+    
+    # Construct supplemental arrest codes/categories dataset for charges in 
+      # Davis arrest log. Charge categories are manually constructed from 
+      # categories in CA Attorney General document, found at
+      # https://oag.ca.gov/sites/all/files/agweb/pdfs/cjsc/prof10/codes.pdf
   supp_codes <- read_sheet(
     "https://docs.google.com/spreadsheets/d/1jExCh-Kv4o3vFSrZaWBJ4OchHXhehPFryMuufxiDqMI/edit#gid=1099502257")
       # Retain only section code and category columns
   supp_codes <- supp_codes[,4:5]
   
-  # CLEAN ARREST LOG----
+  # PREPARE ARREST LOG----
     # Rename columns
-  colnames <- c("date", "charge1", "charge2", "charge3", "sex", "race", "age")
-  davis_log <- lapply(davis_log_raw, setNames, colnames)
+  arrest_colnames <- 
+    c("date", "charge1", "charge2", "charge3", "sex", "race", "age")
+  arrest_log <- lapply(arrest_log_raw, setNames, colnames)
+  
     # Remove redundant and blank rows
-  davis_log[[1]] <- davis_log[[1]][-1,]
-  davis_log[[67]] <- davis_log[[67]][-15,]
-  davis_log <- lapply(davis_log, transform, age = as.numeric(age))
-    # Bind list into one data frame
-  davis_log <- bind_rows(davis_log)
-    # Renumber rows & add individual ID column with row numbers
-  rownames(davis_log) <- 1:nrow(davis_log)
-  davis_log <- cbind("indiv_id" = rownames(davis_log), data.frame(davis_log))
+  arrest_log[[1]] <- arrest_log[[1]][-1,]
+  arrest_log[[67]] <- arrest_log[[67]][-15,]
+  
+    # Class age field as numeric
+  arrest_log <- lapply(arrest_log, transform, age = as.numeric(age))
+  
+    # Bind arrest log list elements into one data frame
+  arrest_log <- bind_rows(arrest_log)
+  
+    # Renumber rows
+  rownames(arrest_log) <- 1:nrow(arrest_log)
+  
+    # Add individual ID column with row number
+  arrest_log <- cbind("indiv_id" = rownames(arrest_log), data.frame(arrest_log))
+  
     # Fix scraping errors in race field
-  davis_log$race <- gsub("Be lAacmkerican|eB lAacmkerican", 
-                         "Black", davis_log$race)
-  davis_log$race <- gsub("eH iAspmaenriiccan|HIsilsapnadneirc", 
-                         "Hispanic", davis_log$race)
-  davis_log$race <- gsub("eO tAhmererican", 
-                         "Other", davis_log$race)
-  davis_log$race <- gsub("eW Ahmiteerican|We Ahmiteerican", 
-                         "White", davis_log$race)
-  davis_log$race <- gsub("OIsltahnedr eArsian", 
-                         "Other Asian", davis_log$race)
-  davis_log$race[1849] <- "Other" # blank in pdf...suggest assigning as Unknown/NA. -CF
+  arrest_log$race <- gsub("Be lAacmkerican|eB lAacmkerican", 
+                         "Black", arrest_log$race)
+  arrest_log$race <- gsub("eH iAspmaenriiccan|HIsilsapnadneirc", 
+                         "Hispanic", arrest_log$race)
+  arrest_log$race <- gsub("eO tAhmererican", 
+                         "Other", arrest_log$race)
+  arrest_log$race <- gsub("eW Ahmiteerican|We Ahmiteerican", 
+                         "White", arrest_log$race)
+  arrest_log$race <- gsub("OIsltahnedr eArsian", 
+                         "Other Asian", arrest_log$race)
+  arrest_log$race[1849] <- "Unknown"
 
-  # RESHAPE/PREP ARREST LOG----
-    # Melt into single charge column
-  davis_log_long <- davis_log %>% 
+    # Melt three charge fields into a single charge column
+  arrest_log_long <- arrest_log %>% 
     pivot_longer(-c("indiv_id", "date", "sex", "race", "age"),
                  names_to = "charge_num")
-    # Rename sec_code column
-  colnames(davis_log_long)[7] <- "sec_code"
-    # Fill in rows with missing race, remove rows with blank charges
-  davis_log_long$race <- sub("^$", "Missing", 
-                             davis_log_long$race)
-  davis_log_long <- davis_log_long %>% na_if("") %>% na.omit(sec_code)
-    # Standardize charge codes (capitalize, delete spaces)
-  davis_log_long$sec_code <- toupper(davis_log_long$sec_code)
-  davis_log_long$sec_code <- gsub(" ", "", davis_log_long$sec_code, 
-                                  fixed = TRUE)
-    # Correct typos in charge codes
-  davis_log_long$sec_code[davis_log_long$sec_code == "508"] <- "508PC"
-  davis_log_long$sec_code[davis_log_long$sec_code == "11364"] <- "11364(A)HS"
-    # Correct column classes
-  davis_log_long <- davis_log_long %>% 
-    mutate_at(vars(indiv_id, sex, race, charge_num, sec_code), as.factor)
-  davis_log_long$age <- as.numeric(davis_log_long$age)
-  davis_log_long$date <- mdy(davis_log_long$date)
+      # Rename melted value field as sec_code
+  colnames(arrest_log_long)[7] <- "sec_code"
     
-  # CLEAN UP LAW ENFORCEMENT CODE TABLES----
-    # Retain important fields (I don't know what the other fields are!)
+    # Fill in rows with unknown race
+  arrest_log_long$race <- sub("^$", "Unknown", 
+                             arrest_log_long$race)
+  
+    # Remove rows with blank charges
+  arrest_log_long <- arrest_log_long %>% na_if("") %>% na.omit(sec_code)
+      
+    # Capitalize charge codes
+  arrest_log_long$sec_code <- toupper(arrest_log_long$sec_code)
+      # Delete spaces in charge codes
+  arrest_log_long$sec_code <- gsub(" ", "", arrest_log_long$sec_code, 
+                                  fixed = TRUE)
+    # Correct minor errors in charge codes
+  arrest_log_long$sec_code[arrest_log_long$sec_code == "508"] <- "508PC"
+  arrest_log_long$sec_code[arrest_log_long$sec_code == "11364"] <- "11364(A)HS"
+  
+    # Correct column classes
+  arrest_log_long <- arrest_log_long %>% 
+    mutate_at(vars(indiv_id, sex, race, charge_num, sec_code), as.factor)
+  arrest_log_long$age <- as.numeric(arrest_log_long$age)
+  arrest_log_long$date <- mdy(arrest_log_long$date)
+    
+  # PREPARE LAW ENFORCEMENT CODE TABLES----
+    # Retain important fields (don't know what the other fields are!)
   le_code <- le_code_raw[c("V6", "V5", "V7", "V8")]
+    
+    # Assign column names to retained fields
   colnames(le_code) <- c("ca_code", "section_full", "description", "sentence")
-    # Add missing sections, codes, & code descriptions
+  
+    # Correct missing sections, codes, & code descriptions
   le_code <- le_code %>% add_row(section_full = "11357(A)", ca_code ="HS", 
                                  description = "POSSESSION MARIJUANA")
   le_code <- le_code %>% add_row(section_full = "11357(D)", ca_code ="HS", 
@@ -255,7 +279,8 @@
   le_code <- le_code %>% add_row(section_full = "666", ca_code ="PC", 
                                 description = 
                                   "PETTY THEFT:PRIOR SPECIAL CONVICTION SEX REG REQUIRED")
-    # Code corrections
+    
+    # Correct errors/inconsistencies in section codes
   le_code$section_full <- gsub("266I \\(", "266 I\\(", le_code$section_full)
   le_code$section_full <- gsub("653F \\(", "653 F\\(", le_code$section_full)
   le_code$section_full <- gsub("0\\(", "0 \\(", le_code$section_full)
@@ -290,6 +315,7 @@
   le_code$section_full[le_code$section_full=="664/488"] <- "488 [488"
   le_code$section_full[le_code$section_full=="664/490.5 (A)"] <- 
     "490.5 (A) [664]"
+  
     # Delete lines without specific CA code reference
   le_code <- subset(le_code, !section_full=="AGRICULTURE")
   le_code <- subset(le_code, !section_full=="DESERTION")
@@ -309,23 +335,33 @@
   le_code <- subset(le_code, !section_full=="VIOL PROB/FEL")
   le_code <- subset(le_code, !section_full=="VIOL PROB/MISD")
   le_code <- subset(le_code, !section_full=="WATERCRAFT")
-    # Unite charge columns for rapid correction purposes
+  
+    # Concatenate charge columns for rapid correction purposes
   le_code$sec_code <- paste(le_code$section_full, le_code$ca_code, sep = "")
+      # Remove space in middle
   le_code$sec_code<- gsub(" ", "", le_code$sec_code, fixed = TRUE)
-    # Separate section and subsection columns
+  
+    # Additional columns with separate section and subsection columns 
+      # Create space between ending and leading parentheses
   le_code$section_full <- gsub("\\)\\(", "\\) \\(", le_code$section_full)
+      # Separation of section and subsections
   le_code <- le_code %>% separate(section_full, 
                                   into = c("section", "subsection1", 
                                            "subsection2", "subsection3",
                                            "subsection4", "subsection5"),
                                   sep = " ", remove = FALSE)
+  
     # Change class of section to allow for numeric merge with CA Codes
   le_code$section <- as.numeric(le_code$section)
-    # Add CA Codes headings
+  
+    # Add headings from the CA penal, vehicle, health and safety, etc. codes
   le_code[, c("part", "part_head", "title", "title_head", 
               "chapter", "chapter_head")] <- NA
   
   # ADD CALIFORNIA CODES INFORMATION----
+    # This section is included if alternative code-based categorizations
+    # are later desired, instead of the currently used CA AG-based scheme.
+  
     # Penal Code Parts
         # Part numbers 
   le_code <- le_code %>% 
@@ -340,6 +376,7 @@
                              ca_code == "PC" ~ 5,
                            section >=16000 & section <=34370 & 
                              ca_code == "PC" ~ 6))
+  
         # Part headings
   le_code <- le_code %>% 
     mutate(part_head = case_when(section < 681 & ca_code == "PC" 
@@ -357,6 +394,7 @@
                             section >=16000 & section <=34370 & 
                               ca_code == "PC" ~ 
                               "Control of deadly weapons"))
+  
       # Penal Code Titles
         # Title numbers
   le_code <- le_code %>%
@@ -380,6 +418,7 @@
                        section >=626  & section <=653.75 & ca_code == "PC" ~ 15,
                        section >=654  & section <=678 & ca_code == "PC" ~ 16 ,
                        section >=679  & section <=680.4 & ca_code == "PC" ~ 17))
+  
       # Title headings
   le_code <- le_code %>%
     mutate(title_head = case_when(
@@ -421,6 +460,7 @@
         "General provisions",
       section >=679  & section <=680.4 & ca_code == "PC" ~ 
         "Rights of victims and witnesses of crime"))
+  
     # Penal Code Chapters
       # Chapter numbers
   le_code <- le_code %>% 
@@ -626,6 +666,7 @@
         "Immigration matters",
       section ==653.75 & ca_code == "PC" ~ 
         "Crimes committed while in custody in correctional facilities"))
+  
     # Vehicle Code
       # Divisions
         # Division numbers
@@ -736,6 +777,7 @@
       section >=42000 & section <=42277 & ca_code == "VC" ~ 
         "Penalties and disposition of fees, fines, and forfeitures",
     ))
+  
   # Business and Professions Code
     # Divisions
       # Division numbers
@@ -785,6 +827,7 @@
       section >= 26000 & section <= 26250 & ca_code == "BP"  ~ 
         "Cannabis"
     ))
+  
   # Health and Safety Code
     # Divisions
       # Division numbers
@@ -964,29 +1007,41 @@
         "Surplus medication collection and distribution" ,
       section >= 151000 & section <= 151003 & ca_code == "HS" ~ 
         "Sexual health education accountability act"))
-    # Add felony/misdemeanor categories
+  
+    # Merge with felony/misdemeanor categories in severity table
   le_code <- left_join(le_code, severity, by = "sentence")
+  
     # Correct column classes
   le_code <- le_code %>% 
    mutate_at(vars(ca_code, section_full, section, subsection1, subsection2,
              subsection3, subsection4, subsection5, description, sentence, 
              sec_code, part, part_head, title, title_head, chapter, chapter_head,
              division, division_head, severity), as.factor)
+  
     # Reshape multiple sec_code rows into single row 
+      # Group by section code
   le_code <- le_code %>% group_by(sec_code) %>% mutate(id = row_number())
+      # Cast into wide table
   le_code <- le_code %>%
     pivot_wider(names_from = id, 
                 values_from = c(description, sentence, severity))
-    # Code small version
-  le_code <- le_code[c("")]
   
-  # JOIN DATASETS-----
-  davis_log_long <- left_join(davis_log_long, le_code, by = "sec_code")
-  davis_log_long <- left_join(davis_log_long, supp_codes, by = "sec_code")
+  # JOIN ARREST LOG, SUPPLEMENTAL CODES, & LAW ENFORCEMENT CODE DATASETS----
+    # Join arrest log & law enforcement code tables
+  arrest_log_long <- left_join(arrest_log_long, le_code, by = "sec_code")
+  
+    # Join arrest long/law enforcement code table with supplemental code table
+  arrest_log_long <- left_join(arrest_log_long, supp_codes, by = "sec_code")
+      # Remove redundant columns
+  arrest_log_long$section.y <- NULL
+  arrest_log_long$subsection <- NULL
+      # Rename section column
+  arrest_log_long <- rename(arrest_log_long, section = section.x)
+  
     # Verify column classes
-  davis_log_long <- davis_log_long %>% 
+  arrest_log_long <- arrest_log_long %>% 
     mutate_at(vars(indiv_id, sex, race, charge_num, sec_code, ca_code,
-                   section_full, section, section, subsection1, subsection2,
+                   section_full, section, subsection1, subsection2,
                    subsection3, subsection4, subsection5, description_1, 
                    description_2, description_3, description_4, description_5,
                    description_6, description_7, description_8, sentence_1, 
@@ -997,10 +1052,143 @@
                    title, title_head, chapter,
                    chapter_head, category), as.factor)
   
-  # EXPORT INTO REPO----
-  write.csv(davis_log_long, "./data/generated/davis_log_long.csv")
   
+  # SHINY TABLE: ARRESTS BY RACE, SEVERITY, DATE----
+    # This prepares (makes compact, wider) the above joined table for Shiny use.
+    # Make wider retaining only key fields.
+  arrests <- arrest_log_long %>% pivot_wider(
+    id_cols = c("indiv_id", "date", "sex", "race", "age"), 
+    names_from = c("charge_num"),
+    values_from = c("severity_1", "sec_code", "description_1"))
+  
+    # Concatenate severity columns into a single column
+  arrests$severity <- paste(arrests$severity_1_charge1,
+                            arrests$severity_1_charge2, 
+                            arrests$severity_1_charge3,
+                            sep = ", ")
+  
+    # Concatenate charge columns into a single column
+  arrests$sec_codes <- paste(arrests$sec_code_charge1,
+                             arrests$sec_code_charge2,
+                             arrests$sec_code_charge3,
+                             sep = ", ")
+    
+    # Concatenate charge descriptions into a single column
+  arrests$charges <- paste(arrests$description_1_charge1,
+                           arrests$description_1_charge2,
+                           arrests$description_1_charge3,
+                           sep = ", ")
+  
+    # Remove unused columns
+  arrests$severity_1_charge1 <- NULL
+  arrests$severity_1_charge2 <- NULL
+  arrests$severity_1_charge3 <- NULL
+  arrests$sec_code_charge1 <- NULL
+  arrests$sec_code_charge2 <- NULL
+  arrests$sec_code_charge3 <- NULL
+  arrests$description_1_charge1 <- NULL
+  arrests$description_1_charge2 <- NULL
+  arrests$description_1_charge3 <- NULL
+  
+    # Recode severity column into numbers of felonies & misdemeanors
+  arrests$severity <- recode_factor(
+    arrests$severity,
+    "Felony, Felony, Felony" = "Felony [3]",
+    "Felony, Felony, Misdemeanor"  = "Felony [2], Misdemeanor [1]",
+    "Felony, Felony, NA" = "Felony [2]",   
+    "Felony, Misdemeanor, Felony" = "Felony [2], Misdemeanor [1]",
+    "Felony, Misdemeanor, Misdemeanor" = "Felony [1], Misdemeanor [2]",
+    "Felony, Misdemeanor, NA" = "Felony [1], Misdemeanor [1]", 
+    "Felony, NA, Felony" = "Felony [2]",     
+    "Felony, NA, Misdemeanor" = "Felony [1], Misdemeanor [1]",     
+    "Felony, NA, NA" = "Felony [1]",            
+    "Misdemeanor, Felony, Felony" = "Felony [2], Misdemeanor [1]",
+    "Misdemeanor, Felony, Misdemeanor" = "Felony [1], Misdemeanor [2]",
+    "Misdemeanor, Felony, NA" = "Felony [1], Misdemeanor [1]",  
+    "Misdemeanor, Misdemeanor, Felony" = "Felony [1], Misdemeanor [2]",  
+    "Misdemeanor, Misdemeanor, Misdemeanor" = "Misdemeanor [3]",
+    "Misdemeanor, Misdemeanor, NA" = "Misdemeanor [2]",
+    "Misdemeanor, NA, Felony" = "Felony [1], Misdemeanor [1]",            
+    "Misdemeanor, NA, Misdemeanor" = "Misdemeanor [2]",       
+    "Misdemeanor, NA, NA" = "Misdemeanor [1]",                
+    "NA, Felony, Felony" = "Felony [2]",                  
+    "NA, Felony, Misdemeanor" = "Felony [1], Misdemeanor [1]",             
+    "NA, Felony, NA" = "Felony [1]",                   
+    "NA, Misdemeanor, Felony" = "Felony [1], Misdemeanor [1]",             
+    "NA, Misdemeanor, Misdemeanor" = "Misdemeanor [2]",          
+    "NA, Misdemeanor, NA" = "Misdemeanor [1]",           
+    "NA, NA, Felony" = "Felony [1]",                    
+    "NA, NA, Misdemeanor" = "Misdemeanor [1]",            
+    "NA, NA, NA" = "Unclear/Unknown" )
+  
+    # Order severity combinations as should appear in Shiny app
+  arrests <- arrests %>% arrange(severity) %>%
+    mutate(severity = factor(severity, levels = 
+                               c("Felony [3]", "Felony [2], Misdemeanor [1]",
+                                 "Felony [2]", "Felony [1], Misdemeanor [2]",
+                                 "Felony [1], Misdemeanor [1]", "Felony [1]",            
+                                 "Misdemeanor [3]", "Misdemeanor [2]",
+                                 "Misdemeanor [1]", "Unclear/Unknown")))
+  
+    # Recode race categories to reduce number of options for Shiny visualization
+  arrests$race <- recode_factor(arrests$race, 
+                                "Asian Indian" = "Asian",
+                                "Chinese" = "Asian",
+                                "Filipino" = "Asian",
+                                "Japanese" = "Asian",
+                                "Korean" = "Asian",
+                                "Other Asian" = "Asian",
+                                "Vietnamese" = "Asian",
+                                "Laotian" = "Asian",
+                                "Hawaiian" = "Other/Unknown",
+                                "Indian/Nativ" = "Other/Unknown",
+                                "Missing" = "Other/Unknown",
+                                "Other" = "Other/Unknown",
+                                "Pacific" = "Other/Unknown",
+                                "Unknown" = "Other/Unknown")
+  
+    # Remove individual ID column (not needed)
+  arrests$indiv_id <- NULL
+    
+    # Correct class of date column
+  arrests$date <- as.Date(arrests$date)
+  
+    # Remove NAs from severity, section code, & charge fields
+  arrests[c("severity", "sec_codes", "charges")] <- 
+    as.data.frame(sapply(arrests[c("severity", "sec_codes", "charges")], 
+                         function(x) x <- gsub(", NA", "", x)))
 
+  
+  # SHINY TABLE: CHARGES----
+    # Subset charges out of joined table
+  charges <- arrest_log_long %>% 
+    subset(select  = c("indiv_id", "date", "sex", "race", "age",
+                       "sec_code", "description_1", "severity_1", "category"))
+    # Recode race categories to reduce number of options for Shiny visualization
+  charges$race <- recode_factor(charges$race, 
+                                "Asian Indian" = "Asian",
+                                "Chinese" = "Asian",
+                                "Filipino" = "Asian",
+                                "Japanese" = "Asian",
+                                "Korean" = "Asian",
+                                "Other Asian" = "Asian",
+                                "Vietnamese" = "Asian",
+                                "Laotian" = "Asian",
+                                "Hawaiian" = "Other/Unknown",
+                                "Indian/Nativ" = "Other/Unknown",
+                                "Missing" = "Other/Unknown",
+                                "Other" = "Other/Unknown",
+                                "Pacific" = "Other/Unknown",
+                                "Unknown" = "Other/Unknown")
+    
+  
+  # EXPORT----
+  write.csv(arrest_log_long, "./data/generated/arrest_log_long.csv")
+    # Shiny tables into shiny folder. May need to change based on location on
+    # user's computer.
+  write.csv(arrests, "./shiny/arrests.csv", row.names = F)
+  write.csv(charges, "./shiny/charges.csv", row.names = F)
+  
 
 
   

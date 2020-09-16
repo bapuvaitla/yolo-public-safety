@@ -1,16 +1,38 @@
   library(shiny)
-  library(tidyverse)
   library(shinyjs)
-  library(DT)
+  library(tidyverse)
+  library(DT) # for data table download options
   library(shinythemes)
   library(shinyWidgets)
-  library(lubridate)
+  library(lubridate) # for correcting dates
   
   # READ DATA----
     # Calls
   calls_shiny <- read.csv("calls_sum.csv", colClasses = c(
     "character","factor","factor","integer"))
   calls_shiny$date <- as.Date(calls_shiny$date)
+  
+      # Order factor levels by severity, according to Davis PD-provided scheme
+  calls_shiny <- calls_shiny %>%
+    mutate(category = factor(category, 
+                             levels = c(
+                               "Documentation Only/Miscellaneous",
+                               "Online Crime Reporting",
+                               "Nuisance/Code Enforcement",
+                               "Traffic/Minor Vehicle Violations or Issues",
+                               "Required Other Agency/Department Response",
+                               "Officer-Initiated Contact",
+                               "Property Theft/Destruction/Lost",
+                               "Mental Health/Welfare",
+                               "Drug/Alcohol",
+                               "Patrol Response for Assessment",
+                               "Traffic/Major Safety",
+                               "Suspicious Activity",
+                               "Violent Crime/Abuse or Neglect/Public Safety"
+                             )
+    )
+    )
+  
     # Arrests
   arrests <- read.csv("arrests.csv", colClasses = c(
                         "Date", "factor", "factor", "integer", 
@@ -447,15 +469,15 @@
     output$results_plot <- renderPlot({
       if (input$stat == "Count") {
       ggplot(calls_filtered()) +
-        geom_bar(aes(x = broad_cat,
+        geom_bar(aes(x = category,
                      y = n,
-                     fill = broad_cat,
-                     color = broad_cat),
+                     fill = category,
+                     color = category),
                  stat = "identity") +
           scale_color_viridis_d() +
           scale_fill_viridis_d() +
           stat_summary(
-            aes(x = broad_cat,
+            aes(x = category,
                 y = n,
                 label = stat(y)), 
             fun = "sum", geom = "text", vjust = -0.5, size = 4.5) +
@@ -471,13 +493,13 @@
         ylab("# of calls") + xlab("Call category") 
      } else {
        ggplot(calls_filtered()) +
-         geom_bar(aes(x = broad_cat,
+         geom_bar(aes(x = category,
                       y = n*100/sum(n),
-                      fill = broad_cat,
-                      color = broad_cat),
+                      fill = category,
+                      color = category),
                   stat = "identity") +
          stat_summary(
-           aes(x = broad_cat,
+           aes(x = category,
                y = n*100/sum(n),
                label = paste(stat(round(y, digits = 1)), "%", sep ="")), 
            fun = "sum", geom = "text", vjust = -0.5, size = 4.5) +

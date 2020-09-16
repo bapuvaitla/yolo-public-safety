@@ -25,8 +25,8 @@
 "11",2015-06-06,"M","Black",43,"647(H)PC","DISORDERLY CONDUCT:LOITER/ETC PRIVATE PROPERTY","Misdemeanor","Disturbing the peace"
 "12",2015-06-07,"M","White",21,"11350(A)HS","POSSESS NARCOTIC CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "13",2015-06-07,"F","White",31,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
-"13",2015-06-07,"F","White",31,"26.04.020(A)CC",NA,NA,NA
-"13",2015-06-07,"F","White",31,"27.02.160CC",NA,NA,NA
+"13",2015-06-07,"F","White",31,"26.04.020(A)CC",NA,NA,"Alcohol Related Incidents"
+"13",2015-06-07,"F","White",31,"27.02.160CC",NA,NA,"Miscellaneous"
 "14",2015-06-09,"M","Hispanic",22,"496(A)PC","RECEIVE/ETC KNOWN STOLEN PROPERTY","Felony","Theft"
 "15",2015-06-10,"M","White",32,"243(E)(1)PC","BATTERY:SPOUSE/EX SPOUSE/DATE/ETC","Misdemeanor","Assault and battery"
 "15",2015-06-10,"M","White",32,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
@@ -133,7 +133,7 @@
 "67",2015-07-04,"M","Hispanic",23,"243(B)PC","BATTERY ON PEACE OFFICER/EMERGENCY PERSONNEL/ETC","Misdemeanor","Assault and battery"
 "67",2015-07-04,"M","Hispanic",23,"148(A)(1)PC","OBSTRUCT/RESIST/ETC PUBLIC/PEACE OFFICER/EMERGENCY MED TECH","Misdemeanor","Assault and battery"
 "68",2015-07-04,"M","White",47,"647(A)PC","DISORDERLY CONDUCT:SOLICIT LEWD ACT","Misdemeanor","Sexual assault/offenses"
-"68",2015-07-04,"M","White",47,"26.01.030DCC",NA,NA,NA
+"68",2015-07-04,"M","White",47,"26.01.030DCC",NA,NA,"Disturbing the Peace"
 "68",2015-07-04,"M","White",47,"O/WMISD",NA,NA,NA
 "69",2015-07-07,"M","Hispanic",22,"11364.1(A)HS","POSSESSION DRUG PARAPHENALIA",NA,"Drug offenses"
 "69",2015-07-07,"M","Hispanic",22,"314.1PC","INDECENT EXPOSURE W/PRIOR","Felony","Sexual assault/offenses"
@@ -246,7 +246,7 @@
 "128",2015-08-01,"M","White",25,"594(B)(2)(A)PC","VANDALISM LESS THAN $400","Misdemeanor","Vandalism"
 "129",2015-08-01,"M","White",28,"148(A)(1)PC","OBSTRUCT/RESIST/ETC PUBLIC/PEACE OFFICER/EMERGENCY MED TECH","Misdemeanor","Assault and battery"
 "129",2015-08-01,"M","White",28,"148.9(A)PC","FALSE IDENTIFICATION TO SPECIFIC PEACE OFFICERS","Misdemeanor","Impeding public justice"
-"129",2015-08-01,"M","White",28,"26.01.045(A)CC",NA,NA,NA
+"129",2015-08-01,"M","White",28,"26.01.045(A)CC",NA,NA,"Disturbing the Peace"
 "130",2015-08-01,"M","Hispanic",35,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
 "131",2015-08-02,"F","White",26,"496(A)PC","RECEIVE/ETC KNOWN STOLEN PROPERTY","Felony","Theft"
 "132",2015-08-05,"M","White",44,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
@@ -751,7 +751,7 @@
 "408",2016-02-02,"M","White",32,"29800(A)(1)PC","FELON/ADDICT/POSSESS/ETC FIREARM","Felony","Weapons"
 "409",2016-02-03,"M","White",47,"148(A)(1)PC","OBSTRUCT/RESIST/ETC PUBLIC/PEACE OFFICER/EMERGENCY MED TECH","Misdemeanor","Assault and battery"
 "409",2016-02-03,"M","White",47,"148.9(A)PC","FALSE IDENTIFICATION TO SPECIFIC PEACE OFFICERS","Misdemeanor","Impeding public justice"
-"409",2016-02-03,"M","White",47,"27.02.160CC",NA,NA,NA
+"409",2016-02-03,"M","White",47,"27.02.160CC",NA,NA,"Miscellaneous"
 "410",2016-02-04,"M","White",26,"488PC","PETTY THEFT","Misdemeanor","Theft"
 "410",2016-02-04,"M","White",26,"647(H)PC","DISORDERLY CONDUCT:LOITER/ETC PRIVATE PROPERTY","Misdemeanor","Disturbing the peace"
 "411",2016-02-04,"F","White",38,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
@@ -801,7 +801,7 @@
 "433",2016-02-17,"M","Black",29,"12090PC","UNMARKED FIREARMS",NA,"Weapons"
 "434",2016-02-17,"M","White",38,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
 "434",2016-02-17,"M","White",38,"11357(B)HS","POSSESS MARIJUANA OVER 1 OZ/28.5 GRAMS","Misdemeanor","Drug offenses"
-"434",2016-02-17,"M","White",38,"26.04.020(A)CC",NA,NA,NA
+"434",2016-02-17,"M","White",38,"26.04.020(A)CC",NA,NA,"Alcohol Related Incidents"
 "435",2016-02-18,"M","Asian",22,"23152(A)VC","DUI ALCOHOL","Misdemeanor","Alcohol-related incidents"
 "435",2016-02-18,"M","Asian",22,"23152(B)VC","DUI ALCOHOL/0.08 PERCENT","Misdemeanor","Alcohol-related incidents"
 "436",2016-02-18,"M","Asian",33,"23152(A)VC","DUI ALCOHOL","Misdemeanor","Alcohol-related incidents"
@@ -977,7 +977,7 @@
 "528",2016-04-15,"M","White",34,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
 "529",2016-04-15,"M","White",38,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
 "530",2016-04-15,"M","Black",63,"148(A)(1)PC","OBSTRUCT/RESIST/ETC PUBLIC/PEACE OFFICER/EMERGENCY MED TECH","Misdemeanor","Assault and battery"
-"530",2016-04-15,"M","Black",63,"26.04.020(A)CC",NA,NA,NA
+"530",2016-04-15,"M","Black",63,"26.04.020(A)CC",NA,NA,"Alcohol Related Incidents"
 "531",2016-04-16,"M","Other/Unknown",22,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
 "532",2016-04-16,"M","Hispanic",23,"23153(A)VC","DUI ALCOHOL:CAUSING BODILY INJURY","Felony","Alcohol-related incidents"
 "532",2016-04-16,"M","Hispanic",23,"23153(B)VC","DUI .08 ALCOHOL:CAUSING BODILY INJURY","Felony","Alcohol-related incidents"
@@ -993,7 +993,7 @@
 "539",2016-04-17,"M","Black",25,"23152(B)VC","DUI ALCOHOL/0.08 PERCENT","Misdemeanor","Alcohol-related incidents"
 "539",2016-04-17,"M","Black",25,"14601.1(A)VC","DRIVE WHILE LICENSE SUSPENDED/REVOKED",NA,"Vehicular violations"
 "540",2016-04-17,"M","Hispanic",32,"148.9(A)PC","FALSE IDENTIFICATION TO SPECIFIC PEACE OFFICERS","Misdemeanor","Impeding public justice"
-"540",2016-04-17,"M","Hispanic",32,"26.04.020(A)CC",NA,NA,NA
+"540",2016-04-17,"M","Hispanic",32,"26.04.020(A)CC",NA,NA,"Alcohol Related Incidents"
 "541",2016-04-17,"F","White",46,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
 "541",2016-04-17,"F","White",46,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "542",2016-04-17,"M","White",66,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
@@ -1078,7 +1078,7 @@
 "590",2016-05-08,"M","Black",37,"23152(B)VC","DUI ALCOHOL/0.08 PERCENT","Misdemeanor","Alcohol-related incidents"
 "591",2016-05-10,"M","Hispanic",26,"594(B)(2)(A)PC","VANDALISM LESS THAN $400","Misdemeanor","Vandalism"
 "592",2016-05-11,"M","White",46,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
-"593",2016-05-11,"M","White",52,"26.04.020(A)CC",NA,NA,NA
+"593",2016-05-11,"M","White",52,"26.04.020(A)CC",NA,NA,"Alcohol Related Incidents"
 "594",2016-05-11,"M","White",54,"485PC","APPROPRIATE LOST PROPERTY","Felony","Theft"
 "595",2016-05-12,"M","White",44,"148(A)(1)PC","OBSTRUCT/RESIST/ETC PUBLIC/PEACE OFFICER/EMERGENCY MED TECH","Misdemeanor","Assault and battery"
 "596",2016-05-12,"M","White",46,"23152(A)VC","DUI ALCOHOL","Misdemeanor","Alcohol-related incidents"
@@ -1129,7 +1129,7 @@
 "624",2016-05-25,"N","Hispanic",30,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "624",2016-05-25,"N","Hispanic",30,"22810PC","UNLAWFUL POSSESSION/USE TEAR GAS OR TEAR GAS WEAPON",NA,"Weapons"
 "625",2016-05-25,"M","White",52,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
-"625",2016-05-25,"M","White",52,"26.04.020(A)CC",NA,NA,NA
+"625",2016-05-25,"M","White",52,"26.04.020(A)CC",NA,NA,"Alcohol Related Incidents"
 "626",2016-05-26,"F","White",54,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
 "627",2016-05-27,"M","White",22,"496(A)PC","RECEIVE/ETC KNOWN STOLEN PROPERTY","Felony","Theft"
 "628",2016-05-27,"M","Other/Unknown",23,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
@@ -1265,7 +1265,7 @@
 "706",2016-06-28,"M","White",32,"242PC","BATTERY WITH SERIOUS BODILY INJURY","Felony","Assault and battery"
 "707",2016-06-28,"M","White",50,"148(A)(1)PC","OBSTRUCT/RESIST/ETC PUBLIC/PEACE OFFICER/EMERGENCY MED TECH","Misdemeanor","Assault and battery"
 "707",2016-06-28,"M","White",50,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
-"707",2016-06-28,"M","White",50,"26.04.050CC",NA,NA,NA
+"707",2016-06-28,"M","White",50,"26.04.050CC",NA,NA,"Alcohol Related Incidents"
 "708",2016-06-28,"M","White",52,"242PC","BATTERY WITH SERIOUS BODILY INJURY","Felony","Assault and battery"
 "708",2016-06-28,"M","White",52,"417(A)(1)PC","EXHIBIT DEADLY WEAPON OTHER THAN FIREARM","Misdemeanor","Assault and battery"
 "709",2016-06-29,"M","Other/Unknown",29,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
@@ -1328,7 +1328,7 @@
 "744",2016-07-16,"M","Hispanic",23,"13700PC","DOMESTIC VIOLENCE",NA,"Assault and battery"
 "744",2016-07-16,"M","Hispanic",23,"242PC","BATTERY WITH SERIOUS BODILY INJURY","Felony","Assault and battery"
 "745",2016-07-16,"M","White",32,"30305(A)(1)PC","PROHIBITED PERSON OWN/POSSESS/ETC AMMUNITION/ETC","Felony","Weapons"
-"745",2016-07-16,"M","White",32,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"745",2016-07-16,"M","White",32,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "745",2016-07-16,"M","White",32,"12671HS","SELL/USE/ETC UNCLASSED FIREWORKS","Misdemeanor","Miscellaneous"
 "746",2016-07-17,"M","White",22,"23152(F)VC","DUI ANY DRUG","Misdemeanor","Alcohol-related incidents"
 "747",2016-07-18,"M","Black",37,"647(H)PC","DISORDERLY CONDUCT:LOITER/ETC PRIVATE PROPERTY","Misdemeanor","Disturbing the peace"
@@ -1406,7 +1406,7 @@
 "790",2016-08-12,"M","White",26,"148(A)(1)PC","OBSTRUCT/RESIST/ETC PUBLIC/PEACE OFFICER/EMERGENCY MED TECH","Misdemeanor","Assault and battery"
 "790",2016-08-12,"M","White",26,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "791",2016-08-12,"M","White",34,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
-"791",2016-08-12,"M","White",34,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"791",2016-08-12,"M","White",34,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "792",2016-08-13,"M","White",18,"10851(A)VC","TAKE VEHICLE W/O OWNER'S CONSENT/VEHICLE THEFT","Felony","Theft"
 "792",2016-08-13,"M","White",18,"182(A)(1)PC","CONSPIRACY:COMMIT CRIME","Felony","Miscellaneous"
 "792",2016-08-13,"M","White",18,"496(A)PC","RECEIVE/ETC KNOWN STOLEN PROPERTY","Felony","Theft"
@@ -2278,7 +2278,7 @@
 "1288",2017-05-17,"M","White",27,"11350(A)HS","POSSESS NARCOTIC CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "1288",2017-05-17,"M","White",27,"4140BP",NA,NA,"Drug offenses"
 "1289",2017-05-17,"F","Asian",38,"11350(A)HS","POSSESS NARCOTIC CONTROLLED SUBSTANCE","Felony","Drug offenses"
-"1290",2017-05-17,"M","Asian",41,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"1290",2017-05-17,"M","Asian",41,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "1290",2017-05-17,"M","Asian",41,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
 "1290",2017-05-17,"M","Asian",41,"4140BP",NA,NA,"Drug offenses"
 "1291",2017-05-17,"M","White",50,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
@@ -2295,13 +2295,13 @@
 "1299",2017-05-21,"M","White",29,"459.5PC","SHOPLIFTING","Felony","Theft"
 "1300",2017-05-21,"F","Asian",29,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
 "1301",2017-05-21,"M","Asian",35,"22900PC","SELL TEAR GAS/TEAR GAS WEAPON","Misdemeanor","Weapons"
-"1301",2017-05-21,"M","Asian",35,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"1301",2017-05-21,"M","Asian",35,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "1302",2017-05-22,"M","Other/Unknown",19,"508PC","EMBEZZLEMENT BY EMPLOYEE [OVER $400]","Felony","Theft"
 "1302",2017-05-22,"M","Other/Unknown",19,"503PC","EMBEZZLEMENT [OVER $400]","Felony","Theft"
 "1303",2017-05-23,"M","Hispanic",27,"273.5(A)PC","INFLICT CORPORAL INJURY ON SPOUSE/COHABITANT/DATNG RELATNSHP","Felony","Assault and battery"
 "1304",2017-05-23,"F","White",39,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
 "1305",2017-05-23,"F","Asian",44,"148.9(A)PC","FALSE IDENTIFICATION TO SPECIFIC PEACE OFFICERS","Misdemeanor","Impeding public justice"
-"1305",2017-05-23,"F","Asian",44,"32.01.060(B)CC",NA,NA,NA
+"1305",2017-05-23,"F","Asian",44,"32.01.060(B)CC",NA,NA,"Miscellaneous"
 "1306",2017-05-25,"M","Asian",29,"653M(B)PC","WITH INTENT TO ANNOY OR HARASS WITH REPEAT CALLS/CONTACT","Misdemeanor","Disturbing the peace"
 "1307",2017-05-25,"M","White",30,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "1307",2017-05-25,"M","White",30,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
@@ -2786,7 +2786,7 @@
 "1580",2017-11-29,"F","Other/Unknown",32,"182(A)(1)PC","CONSPIRACY:COMMIT CRIME","Felony","Miscellaneous"
 "1580",2017-11-29,"F","Other/Unknown",32,"32PC","ACCESSORY","Felony","Miscellaneous"
 "1581",2017-12-01,"M","Black",36,"10851(A)VC","TAKE VEHICLE W/O OWNER'S CONSENT/VEHICLE THEFT","Felony","Theft"
-"1581",2017-12-01,"M","Black",36,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"1581",2017-12-01,"M","Black",36,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "1581",2017-12-01,"M","Black",36,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "1582",2017-12-01,"M","Hispanic",48,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
 "1583",2017-12-02,"M","White",22,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
@@ -2837,7 +2837,7 @@
 "1608",2017-12-13,"M","White",23,"148(A)(1)PC","OBSTRUCT/RESIST/ETC PUBLIC/PEACE OFFICER/EMERGENCY MED TECH","Misdemeanor","Assault and battery"
 "1608",2017-12-13,"M","White",23,"369I(A)PC","TRESPASS:RAILROAD PROPERTY","Misdemeanor","Trespassing"
 "1608",2017-12-13,"M","White",23,"O/WMISD",NA,NA,NA
-"1609",2017-12-13,"M","Asian",42,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"1609",2017-12-13,"M","Asian",42,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "1609",2017-12-13,"M","Asian",42,"148(A)(1)PC","OBSTRUCT/RESIST/ETC PUBLIC/PEACE OFFICER/EMERGENCY MED TECH","Misdemeanor","Assault and battery"
 "1609",2017-12-13,"M","Asian",42,"369I(A)PC","TRESPASS:RAILROAD PROPERTY","Misdemeanor","Trespassing"
 "1610",2017-12-15,"M","White",41,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
@@ -3091,7 +3091,7 @@
 "1752",2018-04-01,"M","White",32,"23152(A)VC","DUI ALCOHOL","Misdemeanor","Alcohol-related incidents"
 "1752",2018-04-01,"M","White",32,"23152(B)VC","DUI ALCOHOL/0.08 PERCENT","Misdemeanor","Alcohol-related incidents"
 "1753",2018-04-02,"M","White",21,"148(A)(1)PC","OBSTRUCT/RESIST/ETC PUBLIC/PEACE OFFICER/EMERGENCY MED TECH","Misdemeanor","Assault and battery"
-"1753",2018-04-02,"M","White",21,"26.04.020(A)CC",NA,NA,NA
+"1753",2018-04-02,"M","White",21,"26.04.020(A)CC",NA,NA,"Alcohol Related Incidents"
 "1754",2018-04-02,"M","Hispanic",26,"23152(A)VC","DUI ALCOHOL","Misdemeanor","Alcohol-related incidents"
 "1754",2018-04-02,"M","Hispanic",26,"23152(B)VC","DUI ALCOHOL/0.08 PERCENT","Misdemeanor","Alcohol-related incidents"
 "1755",2018-04-02,"M","White",31,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
@@ -3753,7 +3753,7 @@
 "2140",2019-02-03,"M","Asian",22,"23152(A)VC","DUI ALCOHOL","Misdemeanor","Alcohol-related incidents"
 "2140",2019-02-03,"M","Asian",22,"23152(B)VC","DUI ALCOHOL/0.08 PERCENT","Misdemeanor","Alcohol-related incidents"
 "2141",2019-02-04,"M","Black",32,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
-"2141",2019-02-04,"M","Black",32,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"2141",2019-02-04,"M","Black",32,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "2142",2019-02-06,"M","White",25,"459PC","BURGLARY","Felony","Burglary"
 "2142",2019-02-06,"M","White",25,"496(A)PC","RECEIVE/ETC KNOWN STOLEN PROPERTY","Felony","Theft"
 "2142",2019-02-06,"M","White",25,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
@@ -3985,7 +3985,7 @@
 "2269",2019-05-14,"F","White",38,"459.5(A)PC","SHOPLIFTING",NA,"Theft"
 "2270",2019-05-16,"M","Black",57,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
 "2271",2019-05-17,"M","White",24,"11350(A)HS","POSSESS NARCOTIC CONTROLLED SUBSTANCE","Felony","Drug offenses"
-"2271",2019-05-17,"M","White",24,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"2271",2019-05-17,"M","White",24,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "2272",2019-05-17,"M","White",28,"496(A)PC","RECEIVE/ETC KNOWN STOLEN PROPERTY","Felony","Theft"
 "2272",2019-05-17,"M","White",28,"B/WMISD",NA,NA,NA
 "2273",2019-05-17,"F","Asian",37,"417(A)(1)PC","EXHIBIT DEADLY WEAPON OTHER THAN FIREARM","Misdemeanor","Assault and battery"
@@ -4301,7 +4301,7 @@
 "2444",2019-09-13,"M","White",23,"23152(A)VC","DUI ALCOHOL","Misdemeanor","Alcohol-related incidents"
 "2444",2019-09-13,"M","White",23,"23152(B)VC","DUI ALCOHOL/0.08 PERCENT","Misdemeanor","Alcohol-related incidents"
 "2445",2019-09-13,"M","White",40,"490.5(A)PC","PETTY THEFT:RETAIL MERCHANDISE/ETC","Misdemeanor","Theft"
-"2445",2019-09-13,"M","White",40,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"2445",2019-09-13,"M","White",40,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "2446",2019-09-15,"M","Hispanic",19,"242PC","BATTERY WITH SERIOUS BODILY INJURY","Felony","Assault and battery"
 "2447",2019-09-15,"M","Hispanic",50,"12500(A)VC","DRIVE W/O LICENSE",NA,"Vehicular violations"
 "2447",2019-09-15,"M","Hispanic",50,"23152(A)VC","DUI ALCOHOL","Misdemeanor","Alcohol-related incidents"
@@ -4312,12 +4312,12 @@
 "2450",2019-09-17,"M","Hispanic",26,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "2450",2019-09-17,"M","Hispanic",26,"647(H)PC","DISORDERLY CONDUCT:LOITER/ETC PRIVATE PROPERTY","Misdemeanor","Disturbing the peace"
 "2451",2019-09-17,"M","Hispanic",42,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
-"2452",2019-09-18,"M","Hispanic",22,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"2452",2019-09-18,"M","Hispanic",22,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "2452",2019-09-18,"M","Hispanic",22,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
 "2452",2019-09-18,"M","Hispanic",22,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "2453",2019-09-18,"M","White",24,"11550(A)HS","USE/UNDER INFLUENCE OF CONTROLLED SUBSTANCE","Misdemeanor","Drug offenses"
 "2454",2019-09-18,"M","White",39,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
-"2454",2019-09-18,"M","White",39,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"2454",2019-09-18,"M","White",39,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "2455",2019-09-20,"M","Hispanic",31,"11378HS","POSSESS CONTROLLED SUBSTANCE FOR SALE","Felony","Drug offenses"
 "2455",2019-09-20,"M","Hispanic",31,"11375(B)HS","POSS FOR SALE DESIGNATED CONTROLLED SUBSTANCE",NA,"Drug offenses"
 "2455",2019-09-20,"M","Hispanic",31,"23152(F)VC","DUI ANY DRUG","Misdemeanor","Alcohol-related incidents"
@@ -4374,7 +4374,7 @@
 "2482",2019-10-08,"M","Black",42,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
 "2483",2019-10-10,"M","Hispanic",28,"11351HS","POSSESS/PURCHASE FOR SALE NARCOTIC/CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "2483",2019-10-10,"M","Hispanic",28,"11352(A)HS","TRANSPORT/SELL NARCOTIC/CONTROLLED SUBSTANCE","Felony","Drug offenses"
-"2483",2019-10-10,"M","Hispanic",28,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"2483",2019-10-10,"M","Hispanic",28,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "2484",2019-10-10,"M","White",30,"11351HS","POSSESS/PURCHASE FOR SALE NARCOTIC/CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "2485",2019-10-10,"M","White",30,"647(F)PC","DISORDERLY CONDUCT:INTOX DRUG WITH ALCOHOL","Misdemeanor","Drug offenses"
 "2485",2019-10-10,"M","White",30,"1203.2(A)PC","PROBATION VIOLATION",NA,"Probation and prison violations"
@@ -4606,7 +4606,7 @@
 "2605",2019-12-31,"M","Other/Unknown",30,"243(E)(1)PC","BATTERY:SPOUSE/EX SPOUSE/DATE/ETC","Misdemeanor","Assault and battery"
 "2606",2020-01-01,"M","White",35,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
 "2607",2020-01-02,"M","Hispanic",37,"4573PC","BRING CONTROLLED SUBSTANCE/ETC INTO PRISON/JAIL/ETC","Felony","Probation and prison violations"
-"2607",2020-01-02,"M","Hispanic",37,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"2607",2020-01-02,"M","Hispanic",37,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "2607",2020-01-02,"M","Hispanic",37,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "2608",2020-01-02,"M","Black",58,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
 "2609",2020-01-03,"M","White",20,"490.5(A)PC","PETTY THEFT:RETAIL MERCHANDISE/ETC","Misdemeanor","Theft"
@@ -4875,7 +4875,7 @@
 "2751",2020-04-25,"M","White",38,"496(A)PC","RECEIVE/ETC KNOWN STOLEN PROPERTY","Felony","Theft"
 "2752",2020-04-29,"M","White",21,"647(H)PC","DISORDERLY CONDUCT:LOITER/ETC PRIVATE PROPERTY","Misdemeanor","Disturbing the peace"
 "2753",2020-04-29,"M","Black",24,"211PC","ROBBERY 1ST DEG HOME INV","Felony","Robbery"
-"2754",2020-04-29,"M","Black",29,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"2754",2020-04-29,"M","Black",29,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "2754",2020-04-29,"M","Black",29,"496(A)PC","RECEIVE/ETC KNOWN STOLEN PROPERTY","Felony","Theft"
 "2754",2020-04-29,"M","Black",29,"459PC","BURGLARY","Felony","Burglary"
 "2755",2020-05-03,"M","White",56,"273.5(A)PC","INFLICT CORPORAL INJURY ON SPOUSE/COHABITANT/DATNG RELATNSHP","Felony","Assault and battery"
@@ -5032,7 +5032,7 @@
 "2836",2020-06-08,"M","Black",19,"11364(A)HS","POSSESS UNLAWFUL PARAPHERNALIA","Misdemeanor","Drug offenses"
 "2837",2020-06-09,"M","Hispanic",23,"182(A)(1)PC","CONSPIRACY:COMMIT CRIME","Felony","Miscellaneous"
 "2837",2020-06-09,"M","Hispanic",23,"496(A)PC","RECEIVE/ETC KNOWN STOLEN PROPERTY","Felony","Theft"
-"2837",2020-06-09,"M","Hispanic",23,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"2837",2020-06-09,"M","Hispanic",23,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "2838",2020-06-09,"M","White",26,"664/10851(A)VC",NA,NA,"Theft"
 "2838",2020-06-09,"M","White",26,"182(A)(1)PC","CONSPIRACY:COMMIT CRIME","Felony","Miscellaneous"
 "2838",2020-06-09,"M","White",26,"496(A)PC","RECEIVE/ETC KNOWN STOLEN PROPERTY","Felony","Theft"
@@ -5045,7 +5045,7 @@
 "2842",2020-06-10,"M","White",40,"452(C)PC","CAUSING FIRE OF STRUCTURE/FOREST LAND","Felony","Arson"
 "2843",2020-06-10,"M","White",40,"594(B)(1)PC","VANDALISM ($400 OR MORE)","Felony","Vandalism"
 "2844",2020-06-11,"M","White",34,"459PC","BURGLARY","Felony","Burglary"
-"2845",2020-06-11,"M","Black",48,"3056PC","VIOLATION PAROLE:FELONY",NA,NA
+"2845",2020-06-11,"M","Black",48,"3056PC","VIOLATION PAROLE:FELONY",NA,"Probation and Prison Violations"
 "2846",2020-06-12,"M","White",35,"23152(A)VC","DUI ALCOHOL","Misdemeanor","Alcohol-related incidents"
 "2846",2020-06-12,"M","White",35,"23152(B)VC","DUI ALCOHOL/0.08 PERCENT","Misdemeanor","Alcohol-related incidents"
 "2846",2020-06-12,"M","White",35,"11377(A)HS","POSSESS CONTROLLED SUBSTANCE","Felony","Drug offenses"
